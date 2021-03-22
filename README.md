@@ -12,6 +12,56 @@ Supports:
 * Ed-Fi Data Standard 3.0 and higher
 * Ed-Fi ODS/API Technical Suite 3, version 3.0 and higher
 
+Setup
+------------
+
+We tried to make the setup and deploy of this web application as easy as possible.
+
+**1)** Open a Windows PowerShell as and Administrator.
+From the **Windows Menu**, search for **PowerShell**, right click on it, and select **Run as Administrator**
+<br/><img src="img/powershell1.png" width="600" >
+
+**2)** Run the automated installer by pasting this command in to the PowerShell window:
+> Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://github.com/Ed-Fi-Exchange-OSS/Chronic-Absenteeism-Dashboard/raw/main/install.ps1'))
+
+### Prerequisites ###
+
+* Install Visual Studio Community Edition (https://visualstudio.microsoft.com/downloads/)
+* Install MsSQL Developer Edition (https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
+* Install SQL Server Management Studio (https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms)
+* Download and restore Ed-Fi ODS s3v5.1.0 database
+  * Download  from here: https://www.myget.org/F/ed-fi/api/v2/package/EdFi.Suite3.Ods.Populated.Template/5.1.0
+* Download the code (https://github.com/Ed-Fi-Exchange-OSS/ParentPortal)
+* Open code with Visual Studio Community Edition
+* Open SQL Server Management Studio and run the following scripts in the order that they are listed to configure the Database.
+    * Scripts are located at the following location "~/Student1.ParentPortal.Data/Scripts/edFi31/"
+      * 1CreateParentPortalSupportingDatabaseSchema.sql
+      * 2ODSExtensions.sql
+      * 3StudentDetails.sql
+      * 4SampleDataDemo.sql (For Demo Only)
+
+* Compile project and Run it.
+
+### Running the application for the first time ###
+
+Before you begin make sure you have gone through all the Prerequisites listed above.
+
+Test credentials
+------------
+
+Ensure that your application is running 
+
+**Credentials:**
+
+~~~
+User:
+   Email: perry.savage@toolwise.onmicrosoft.com
+   Password: Parent123
+~~~
+
+Production Deployment Notes
+------------
+
 ## Legal Information
 
 Copyright (c) 2021 Ed-Fi Alliance, LLC and contributors.
