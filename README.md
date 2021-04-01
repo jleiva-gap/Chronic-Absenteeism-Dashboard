@@ -12,10 +12,14 @@ Supports:
 * Ed-Fi Data Standard 3.0 and higher
 * Ed-Fi ODS/API Technical Suite 3, version 3.0 and higher
 
-Setup
+Quick Start
 ------------
 
-We tried to make the setup and deploy of this web application as easy as possible.
+We tried to make the setup and deploy of this dashboard as easy as possible.
+
+If you already have PowerBi and an Ed-Fi ODS installed you can skip to the Setup section of this document.
+
+For the quick start install please follow these steps:
 
 **1)** Open a Windows PowerShell as and Administrator.
 From the **Windows Menu**, search for **PowerShell**, right click on it, and select **Run as Administrator**
@@ -23,6 +27,29 @@ From the **Windows Menu**, search for **PowerShell**, right click on it, and sel
 
 **2)** Run the automated installer by pasting this command in to the PowerShell window:
 > Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://github.com/Ed-Fi-Exchange-OSS/Chronic-Absenteeism-Dashboard/raw/main/install.ps1'))
+
+**3)** Once everything has finished installing you should see PowerBi and the "Chronic Absenteeism Dasbaord" open.
+*Continue on the how to use the dashboard section.
+
+How to use the Dashbaords
+------------
+
+**1)** If PowerBi is not already open, proceed to open it and the "Chronic Absenteeism Dashboard" PBIX file.
+
+**2)** On the top menu locate and Click on the "Modeling" option.
+
+**3)** On the ribbon menu click on View as. Make sure you select "Dynamic Role" & "Other user". Use one of the emails below in the input for "Other user" and click the OK button.
+
+
+* District Superintendent - DavidWilson@edfi.org
+* School Principal - ChadwickGarner@edfi.org
+* Teacher - TrentNewton@edfi.org
+
+**4)** After a few seconds the Dashboard will finish filtering the widgets to the role of the uset. 
+
+Setup
+------------
+
 
 ### Prerequisites ###
 
