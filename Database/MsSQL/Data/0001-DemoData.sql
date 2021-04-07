@@ -14,7 +14,11 @@ SELECT CalendarCode,255901001,SchoolYear,CalendarTypeDescriptorId,Discriminator,
 FROM [edfi].[Calendar] 
 WHERE SchoolId =255901107
 
-
+--[edfi].[StaffElectronicMail]
+-- We are deploying to the ed-fi Power BI Online Services. Lets update to the email accounts that are in there.
+UPDATE edfi.StaffElectronicMail
+set ElectronicMailAddress=(SELECT LOWER(SUBSTRING(STA.FirstName,1,1) + sta.LastSurname + '@edfidev.onmicrosoft.com') 
+                           FROM edfi.Staff STA WHERE STA.StaffUSI=StaffElectronicMail.StaffUSI);
 --[edfi].[CalendarDate] 
 ---------------------------------------------------------------------------------------------------------
 --The PupulatedTemplate always comes and empty table

@@ -27,11 +27,11 @@ Import-Module "$PSScriptRoot\modules\installQuickStart" -Force
 
 # TODO: Remove once we have finished development...
 # 0) Ensure the working directories exists
-# $global:pathToWorkingDir = "C:\Ed-Fi\QuickStarts\PowerBIChronicAbsenteeism"
-# $global:pathToBinaries = "$global:pathToWorkingDir\Bin"
-# $global:pathToAssets = "$PSScriptRoot\.."
-# Write-Host "Step: Ensuring working path is accessible. ($global:pathToWorkingDir)"
-# New-Item -ItemType Directory -Force -Path $global:pathToBinaries
+$global:pathToWorkingDir = "C:\Ed-Fi\QuickStarts\PowerBIChronicAbsenteeism"
+$global:pathToBinaries = "$global:pathToWorkingDir\Bin"
+$global:pathToAssets = "$PSScriptRoot\.."
+Write-Host "Step: Ensuring working path is accessible. ($global:pathToWorkingDir)"
+New-Item -ItemType Directory -Force -Path $global:pathToBinaries
 
 # The name with which to restore the populated template with.
 $global:populatedTemplateDatabaseName = "Ed-Fi_v5.1.0_ODS_ChronicAbsenteeismQuickStart"
@@ -47,7 +47,7 @@ Write-HostStep "Step 1: Installing ODS S3 V5.1.0 Populated Template."
 Install-OdsDbsS3V510PopultedTemplate
 
 Write-HostStep "Step 2: Installing Analyitcs Middle Tier."
-Install-EdFiAMT
+Install-EdFiAMT $connStrToODS
 
 Write-HostStep "Step 3: Adding Demo data to the database"
 $pathToDemoFiles = "$global:pathToAssets\Database\MsSQL\Data"

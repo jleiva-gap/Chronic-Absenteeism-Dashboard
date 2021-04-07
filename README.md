@@ -15,7 +15,50 @@ Supports:
 Quick Start
 ------------
 
-We tried to make the setup and deploy of this dashboard as easy as possible.
+We tried to make this Quick Start as easy as possible to demo.
+
+Please click on this link and login with the users and roles provided below:
+
+Report URL: [PowerBi Chronic Absenteeism Dasboard](https://app.powerbi.com/groups/4725d1f3-419c-4222-a15f-d31add3eca89/reports/cea1b35c-9f77-4970-bfdb-037a3b83164f?ctid=8f4a8ef8-bdcb-43ac-8f20-a297b8f71a6a)
+
+Password for all accounts is: Ed-Fi!sCool
+Users:
+<table>
+<tr>
+  <th>Position Title</th>
+  <th>Name</th>
+  <th>Email/Username</th>
+</tr>
+<tr>
+  <td>Superintendent at Grand Bend ISD</td><td>David Wilson</td><td>dwilson@edfidev.onmicrosoft.com</td>
+</tr>
+<tr>
+  <td>Principal at Grand Bend High</td><td>Alisa Cameron</td><td>acameron@edfidev.onmicrosoft.com</td>
+</tr>
+<tr>
+  <td>Principal at Grand Bend Middle</td><td>Marjorie Montoya</td><td>mmontoya@edfidev.onmicrosoft.com</td>
+</tr>
+<tr>
+  <td>Principal at Grand Bend Elementary</td><td>Chadwick Garner</td><td>cgarner@edfidev.onmicrosoft.com</td>
+</tr>
+<tr>
+  <td>Teacher at Grand Bend Elementary</td><td>Janet Reid</td><td>jreid@edfidev.onmicrosoft.com</td>
+</tr>
+<tr>
+  <td>Teacher at Grand Bend High</td><td>Russell Gomez</td><td>rgomez@edfidev.onmicrosoft.com</td>
+</tr>
+<tr>
+  <td>Teacher at Grand Bend High</td><td>Sara Preston</td><td>spreston@edfidev.onmicrosoft.com</td>
+</tr>
+<tr>
+  <td>Teacher at Grand Bend High</td><td>Trent Newton</td><td>tnewton@edfidev.onmicrosoft.com</td>
+</tr>
+ </table>
+
+
+Install Localy or on a VM
+------------
+To run this demo locally on your machine or on a virtual machine please follwo these steps:
 
 If you already have PowerBi and an Ed-Fi ODS installed you can skip to the Setup section of this document.
 
@@ -47,47 +90,6 @@ How to use the Dashbaords
 
 **4)** After a few seconds the Dashboard will finish filtering the widgets to the role of the uset. 
 
-Setup
-------------
-
-
-### Prerequisites ###
-
-* Install Visual Studio Community Edition (https://visualstudio.microsoft.com/downloads/)
-* Install MsSQL Developer Edition (https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
-* Install SQL Server Management Studio (https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms)
-* Download and restore Ed-Fi ODS s3v5.1.0 database
-  * Download  from here: https://www.myget.org/F/ed-fi/api/v2/package/EdFi.Suite3.Ods.Populated.Template/5.1.0
-* Download the code (https://github.com/Ed-Fi-Exchange-OSS/ParentPortal)
-* Open code with Visual Studio Community Edition
-* Open SQL Server Management Studio and run the following scripts in the order that they are listed to configure the Database.
-    * Scripts are located at the following location "~/Student1.ParentPortal.Data/Scripts/edFi31/"
-      * 1CreateParentPortalSupportingDatabaseSchema.sql
-      * 2ODSExtensions.sql
-      * 3StudentDetails.sql
-      * 4SampleDataDemo.sql (For Demo Only)
-
-* Compile project and Run it.
-
-### Running the application for the first time ###
-
-Before you begin make sure you have gone through all the Prerequisites listed above.
-
-Test credentials
-------------
-
-Ensure that your application is running 
-
-**Credentials:**
-
-~~~
-User:
-   Email: perry.savage@toolwise.onmicrosoft.com
-   Password: Parent123
-~~~
-
-Production Deployment Notes
-------------
 
 ## Legal Information
 
