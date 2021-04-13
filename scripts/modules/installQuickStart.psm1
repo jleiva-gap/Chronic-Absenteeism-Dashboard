@@ -17,19 +17,24 @@ Function Install-QuickStartPrerequisites() {
     Write-Host "Installing Quick Start Prerequisites"
     Install-Chocolatey
     Install-NugetPackageProvider
+    Install-AzurePackageProvider
     Install-MsSQLServerExpress
     Install-SQLServerModule
 }
 
-Function Install-OdsDbsS3V510PopultedTemplate()
+Function Install-OdsDbsS3V520PopultedTemplate()
 {
     Write-Host "     Downloading database"
-    $odsDbUrl = "https://www.myget.org/F/ed-fi/api/v2/package/EdFi.Suite3.Ods.Populated.Template/5.1.0"
-    $outputpath = "$global:pathToBinaries\EdFi.Suite3.Ods.Populated.Template.5.1.0.zip"
-    Invoke-DownloadFile $odsDbUrl $outputpath
+    $outputpath = "$global:pathToBinaries\"
+    $package = Save-Package -Name EdFi.Suite3.Ods.Populated.Template -Source EdFi@Release -LiteralPath $outputpath
 
     Write-Host "     Unziping database"
-    Expand-Archive -LiteralPath $outputpath -DestinationPath "$global:pathToWorkingDir\Db" -Force
+    $nugetFile = "$outputpath\$($package.name).$($package.version).nupkg"
+    $zipFile = "$outputpath\$($package.name).$($package.version).zip"
+    # Delete the file if it exits as Rename wont work.
+    if(Test-Path $zipFile) { Remove-Item $zipFile}
+    Rename-Item -Path $nugetFile -NewName $zipFile -Force
+    Expand-Archive -LiteralPath $zipFile  -DestinationPath "$global:pathToWorkingDir\Db" -Force
 
     Write-Host "     Restoring database"
     $backupLocation = "$global:pathToWorkingDir\Db\"

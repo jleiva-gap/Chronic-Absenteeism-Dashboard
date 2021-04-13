@@ -24,6 +24,10 @@ set ElectronicMailAddress=(SELECT LOWER(SUBSTRING(STA.FirstName,1,1) + sta.LastS
 --The PupulatedTemplate always comes and empty table
 --let's populate it. 
 ----------------------------------------------------------------------------------------------------------
+DELETE FROM [edfi].[CalendarDateCalendarEvent]; -- Added because the 5.2 populated database has 2 rows and they conflict.
+DELETE FROM [edfi].[CalendarDate]; -- Added because the 5.2 populated database has 2 rows and they conflict.
+
+
 INSERT [edfi].[CalendarDate] ([CalendarCode], [Date], [SchoolId], [SchoolYear], [Discriminator], [CreateDate], [LastModifiedDate], [Id]) 
 VALUES (N'2010605675', CAST(N'2010-08-24' AS Date), 255901001, 2011, NULL, CAST(N'2010-08-28T10:16:44.2466667' AS DateTime2), CAST(N'2010-08-28T10:16:44.2466667' AS DateTime2), N'6d6e0cee-b574-4571-8304-b10016759f6a'),
 	   (N'2010605675', CAST(N'2010-08-24' AS Date), 255901044, 2011, NULL, CAST(N'2010-08-28T10:16:44.3266667' AS DateTime2), CAST(N'2010-08-28T10:16:44.3266667' AS DateTime2), N'0a623d69-b2e4-4ad8-b143-28495fd87a98'),

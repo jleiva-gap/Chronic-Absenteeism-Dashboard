@@ -69,3 +69,12 @@ function Install-NugetPackageProvider(){
         Write-Host "Skipping: Nuget Package Provider as it is already  installed."
     }
 }
+
+function Install-AzurePackageProvider(){
+    if(!(Get-PackageSource | Where-Object -Property Name -eq EdFi@Release)){
+        Write-Host "Adding Azure package source..."
+        Register-PackageSource -Name 'EdFi@Release' -Location 'https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-OSS/_packaging/EdFi%40Release/nuget/v2' -ProviderName NuGet
+    } else {
+        Write-Host "Skipping: Azure package source as it is already  installed."
+    }
+}

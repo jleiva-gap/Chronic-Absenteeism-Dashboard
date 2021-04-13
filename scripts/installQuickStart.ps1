@@ -34,7 +34,7 @@ Write-Host "Step: Ensuring working path is accessible. ($global:pathToWorkingDir
 New-Item -ItemType Directory -Force -Path $global:pathToBinaries
 
 # The name with which to restore the populated template with.
-$global:populatedTemplateDatabaseName = "Ed-Fi_v5.1.0_ODS_ChronicAbsenteeismQuickStart"
+$global:populatedTemplateDatabaseName = "Ed-Fi_v5.2.0_ODS_ChronicAbsenteeismQuickStart"
 $connStrToODS = "server=.;database=$global:populatedTemplateDatabaseName;integrated security=sspi;"
 
 # *** Starting The Install *** #
@@ -43,8 +43,8 @@ Write-HostInfo "Installing Chronic Absenteeism Quick Start."
 Write-HostStep "Step 0: Ensuring all Prerequisites are installed."
 Install-QuickStartPrerequisites
 
-Write-HostStep "Step 1: Installing ODS S3 V5.1.0 Populated Template."
-Install-OdsDbsS3V510PopultedTemplate
+Write-HostStep "Step 1: Installing ODS S3 V5.2.0 Populated Template."
+Install-OdsDbsS3V520PopultedTemplate
 
 Write-HostStep "Step 2: Installing Analyitcs Middle Tier."
 Install-EdFiAMT $connStrToODS
