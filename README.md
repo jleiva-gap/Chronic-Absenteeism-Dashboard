@@ -90,6 +90,71 @@ How to use the Dashbaords
 
 **4)** After a few seconds the Dashboard will finish filtering the widgets to the role of the uset. 
 
+## Metrics, Reporting, and Visualizations
+The following metrics were all calculated using PowerBI DAX (Data Analysis Expressions)
+
+<table>
+<tr>
+  <th>Metric</th>
+  <th>PowerBi Table</th>
+  <th>DAX</th>
+  <th>SQL Equivalent Script</th>
+</tr>
+<tr>
+  <td>IsCHRAB</td><td>analytics ADA Yearly</td><td>IsCHRAB = (IF([ADA] <= 0.9,1,0))</td><td><a href="https://github.com/Ed-Fi-Exchange-OSS/Chronic-Absenteeism-Dashboard/tree/main/metrics/SQL%20Scripts/IsCHRAB.sql">IsCHRAB.sql</a></td>
+</tr>
+<tr>
+  <td>IsCHRABFilter</td><td>analytics ADA Yearly</td><td>IsCHRABFilter = IF ( [IsCHRAB] = 1, True, False)</td><td><a href="https://github.com/Ed-Fi-Exchange-OSS/Chronic-Absenteeism-Dashboard/tree/main/metrics/SQL%20Scripts/IsCHRABFilter.sql">IsCHRABFilter.sql</a></td>
+</tr>
+<tr>
+  <td>IsCHRAB_OnTheVerge</td><td>analytics ADA Yearly</td><td>IsCHRAB_OnTheVerge  = (IF([ADA] > 0.90 && [ADA] <= 0.95 ,1,0))	
+</td><td><a href="https://github.com/Ed-Fi-Exchange-OSS/Chronic-Absenteeism-Dashboard/tree/main/metrics/SQL%20Scripts/IsCHRAB_OnTheVerge.sql">IsCHRAB_OnTheVerge.sql</a></td>
+</tr>
+<tr>
+  <td>IsCHRABFilter_OnTheVerge</td><td>analytics ADA Yearly</td><td>IsCHRABFilter_OnTheVerge = IF ( [IsCHRAB_OnTheVerge] = 1, True, False )</td><td><a href="https://github.com/Ed-Fi-Exchange-OSS/Chronic-Absenteeism-Dashboard/tree/main/metrics/SQL%20Scripts/IsCHRABFilter_OnTheVerge.sql">IsCHRABFilter_OnTheVerge.sql</a></td>
+</tr>
+<tr>
+  <td>CHRABRate</td><td>analytics ADA Yearly</td><td>CHRABRate = DIVIDE(SUM([IsCHRAB]),COUNT([StudentKey]),0).</td><td><a href="https://github.com/Ed-Fi-Exchange-OSS/Chronic-Absenteeism-Dashboard/tree/main/metrics/SQL%20Scripts/CHRABRate.sql">CHRABRate.sql</a></td>
+</tr>
+<tr>
+  <td>CHRAB_OneTheVergeRate</td><td>analytics ADA Yearly</td><td>CHRAB_OneTheVergeRate  = DIVIDE(SUM([IsCHRAB_OnTheVerge]),COUNT([StudentKey]),0)</td><td><a href="https://github.com/Ed-Fi-Exchange-OSS/Chronic-Absenteeism-Dashboard/tree/main/metrics/SQL%20Scripts/CHRAB_OneTheVergeRate.sql">CHRAB_OneTheVergeRate.sql</a></td>
+</tr>
+<tr>
+  <td>Race</td><td>analytics DemographicDim</td><td>Race = if ('analytics DemographicDim'[DemographicParentKey] = "Race", 'analytics DemographicDim'[DemographicLabel])</td><td><a href="https://github.com/Ed-Fi-Exchange-OSS/Chronic-Absenteeism-Dashboard/tree/main/metrics/SQL%20Scripts/RaceFilter.sql">RaceFilter.sql</a></td>
+</tr>
+<tr>
+  <td>Race</td><td>analytics StudentSchoolDim	</td><td>Race = CALCULATE(CONCATENATEX('analytics DemographicDim','analytics DemographicDim'[DemographicLabel],","),FILTER('analytics DemographicDim','analytics DemographicDim'[DemographicParentKey] = "Race"))</td><td><a href="https://github.com/Ed-Fi-Exchange-OSS/Chronic-Absenteeism-Dashboard/tree/main/metrics/SQL%20Scripts/StudentRace.sql">StudentRace.sql</a></td>
+</tr>
+<tr>
+  <td>GradeLevelNumeric</td><td>analytics StudentSchoolDim</td><td>GradeLevelNumeric = SWITCH(
+[GradeLevel],
+"First grade", "01 - First grade",
+    "Second grade", "02 - Second grade",
+    "Third grade", "03 - Third grade",
+    "Fourth grade", "04 - Fourth grade",
+    "Fifth grade", "05 - Fifth grade",
+    "Sixth grade", "06 - Sixth grade",
+    "Seventh grade", "07 - Seventh grade",
+    "Eighth grade", "08 - Eighth grade",
+    "Ninth grade", "09 - Ninth grade",
+    "Tenth grade", "10 - Tenth grade",
+    "Eleventh grade", "11 - Eleventh grade",
+    "Twelfth grade", "12 - Twelfth grade"
+)</td><td><a href="https://github.com/Ed-Fi-Exchange-OSS/Chronic-Absenteeism-Dashboard/tree/main/metrics/SQL%20Scripts/GradeLevelNumeric.sql">GradeLevelNumeric.sql</a></td>
+</tr>
+<tr>
+  <td>StudentIdentifier</td><td>analytics StudentSchoolDim</td><td>StudentIdentifier =  (CONCATENATE(SELECTEDVALUE('analyticsStudentSchoolDim'[StudentFirstName]),   CONCATENATE(" ",CONCATENATE(SELECTEDVALUE('analytics StudentSchoolDim'[StudentLastName]), CONCATENATE(" # ",SELECTEDVALUE('analytics StudentSchoolDim'[StudentKey])))))</td><td><a href="https://github.com/Ed-Fi-Exchange-OSS/Chronic-Absenteeism-Dashboard/tree/main/metrics/SQL%20Scripts/StudentIdentifier.sql">StudentIdentifier.sql</a></td>
+</tr>
+<tr>
+  <td>CalendarAndMonth</td><td>analytics ADA Monthly</td><td>CalendarAndMonth = [CalendarYear] & "-" & IF([Month] &lt;10,"0",BLANK()) & [Month].	</td><td><a href="https://github.com/Ed-Fi-Exchange-OSS/Chronic-Absenteeism-Dashboard/tree/main/metrics/SQL%20Scripts/CalendarAndMonth.sql">CalendarAndMonth.sql</a></td>
+</tr>
+<tr>
+  <td>FullName</td><td>analytics ContactPersonDim</td><td>FullName = [ContactFirstName] & " " & [ContactLastName]</td><td><a href="https://github.com/Ed-Fi-Exchange-OSS/Chronic-Absenteeism-Dashboard/tree/main/metrics/SQL%20Scripts/ConctactFullName.sql">ConctactFullName.sql</a></td>
+</tr>
+<tr>
+  <td>StudentImage</td><td>analytics StudentSchoolDim</td><td>StudentImage = "https://district-website/images/students/" & [StudentKey] & ".png"</td><td><a href="https://github.com/Ed-Fi-Exchange-OSS/Chronic-Absenteeism-Dashboard/tree/main/metrics/SQL%20Scripts/StudentImage.sql">StudentImage.sql</a></td>
+</tr>
+</table>
 
 ## Legal Information
 
